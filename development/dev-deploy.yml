@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: development-deployment
+  namespace: development
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: development-app
+  template:
+    metadata:
+      labels:
+        app: development-app
+    spec:
+      containers:
+        - name: app-container
+          image: anupamdevops/environments:development
+          ports:
+            - containerPort: 80 
+          # resources:
+          #   limits:
+          #     cpu: "1"
+          #     memory: "512Mi"
+          #   requests:
+          #     cpu: "0.5"
+          #     memory: "256Mi"

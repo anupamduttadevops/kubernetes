@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stage-deployment
+  namespace: stage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stage-app
+  template:
+    metadata:
+      labels:
+        app: stage-app
+    spec:
+      containers:
+        - name: app-container
+          image: anupamdevops/environments:stage
+          ports:
+            - containerPort: 80 
+          # resources:
+          #   limits:
+          #     cpu: "1"
+          #     memory: "512Mi"
+          #   requests:
+          #     cpu: "0.5"
+          #     memory: "256Mi"
