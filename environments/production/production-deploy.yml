@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: app-container
-          image: anupamdevops/environments:stage
+          image: anupamdevops/environments:development
           ports:
             - containerPort: 80 
           # resources:
