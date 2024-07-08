@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: app-container
-          image: anupamdevops/environments:productions
+          image: anupamdevops/environments:sage
           ports:
             - containerPort: 80 
           # resources:
