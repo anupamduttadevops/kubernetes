@@ -13,11 +13,22 @@ spec:
       labels:
         app: production-app
     spec:
+      serviceAccountName: production
+      volumes:
+        - name: csi-volume
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretsProviderClass: database-aws-secrets
       containers:
         - name: app-container
           image: anupamdevops/environments:development
           ports:
-            - containerPort: 80 
+            - containerPort: 80
+          volumeMounts:
+            - name: csi-volume
+              mountPath: /mnt/secrets-store
           # resources:
           #   limits:
           #     cpu: "1"

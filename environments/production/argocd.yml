@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-production-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/anupamduttadevops/kubernetes.git
+    targetRevision: development
+    path: environments/production
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
